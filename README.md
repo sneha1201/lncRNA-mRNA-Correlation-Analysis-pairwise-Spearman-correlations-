@@ -46,3 +46,32 @@ Install dependencies with:
 
 ```bash
 pip install pandas numpy scipy
+
+🖥️ Usage
+
+python parallel_correlation.py <lncRNA_file.csv> <mRNA_file.csv> <DEG_lncRNA_file.txt> <DEG_mRNA_file.txt> <num_cores>
+
+🔹 Example
+
+python parallel_correlation.py lnc_counts.csv mrna_counts.csv lnc_deg.txt mrna_deg.txt 8
+
+This runs the script using 8 CPU cores.
+🧪 Output Files
+
+    lncRNA_mRNA_correlation_all.csv
+    → Contains all lncRNA–mRNA correlation results
+
+    lncRNA_mRNA_correlation_filtered.csv
+    → Contains only the filtered significant pairs where:
+
+        |Spearman correlation| ≥ 0.9 (i.e., r ≥ 0.9 or r ≤ -0.9)
+
+        p-value < 0.05
+
+📌 Notes
+
+    The script only compares lncRNA–mRNA pairs where both genes are differentially expressed.
+
+    Genes with zero variance across all samples are excluded.
+
+    Designed to handle large datasets efficiently using parallelization.
